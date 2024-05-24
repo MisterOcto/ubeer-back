@@ -1,9 +1,18 @@
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
-app.get('/', (req, res) => {
+const {PrismaClient} = require('@prisma/client');
+const prisma = new PrismaClient();
+
+app.get('/api', (req, res) => {
     res.send('Hello World!');
+});
+
+app.get("/beer", async (req, res) => {
+    const products = await prisma.beer.findMany();
+
+    res.send(products);
 });
 
 app.listen(PORT, () => {

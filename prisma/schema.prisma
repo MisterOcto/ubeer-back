@@ -10,11 +10,29 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("DATABASE_URL_LOCAL")
 }
 
 model Beer {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id   Int     @id @default(autoincrement())
+  name String  @unique
+  imageUrl String
+  categorie String
+  format String
+  abv Float
+  ibu Int
+}
+
+model Brewery {
+  id   Int     @id @default(autoincrement())
+  name String  @unique
+  city String
+  adress String
+}
+
+model Format {
+  id   Int     @id @default(autoincrement())
+  name String  @unique
+  volume String
+  unite String @db.Char(2)
 }
