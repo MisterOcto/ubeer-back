@@ -2,18 +2,13 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
-const {PrismaClient} = require('@prisma/client');
-const prisma = new PrismaClient();
+const beerRoutes = require('./api/routes/beer.route');
+const breweryRoutes = require('./api/routes/brewery.route');
 
-app.get('/api', (req, res) => {
-    res.send('Hello World!');
-});
+app.use(express.json());
 
-app.get("/beer", async (req, res) => {
-    const products = await prisma.beer.findMany();
-
-    res.send(products);
-});
+app.use('/api/beer', beerRoutes);
+app.use('/api/brewery', breweryRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
