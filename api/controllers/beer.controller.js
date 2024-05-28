@@ -36,10 +36,7 @@ const BeerController = {
                 format: newBeerData.format
             }
         });
-        res.send({
-            data: beer,
-            message: "Create beer success !"
-        });
+        res.send("Create beer success !");
     },
 
     deleteBeer: async (req, res) => {

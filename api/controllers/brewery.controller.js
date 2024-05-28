@@ -29,17 +29,11 @@ const BreweryController = {
         const brewery = await prisma.brewery.create({
             data: {
                 name: newBreweryData.name,
-                abv: newBreweryData.abv,
-                ibu: newBreweryData.ibu,
-                imageUrl: newBreweryData.imageUrl,
-                categorie: newBreweryData.categorie,
-                format: newBreweryData.format
+                city: newBreweryData.city,
+                adress: newBreweryData.adress
             }
         });
-        res.send({
-            data: brewery,
-            message: "Create brewery success !"
-        });
+        res.send("Create brewery success !");
     },
 
     deleteBrewery: async (req, res) => {
@@ -61,11 +55,8 @@ const BreweryController = {
             },
             data: {
                 name: newBreweryData.name,
-                abv: newBreweryData.abv,
-                ibu: newBreweryData.ibu,
-                imageUrl: newBreweryData.imageUrl,
-                categorie: newBreweryData.categorie,
-                format: newBreweryData.format
+                city: newBreweryData.city,
+                adress: newBreweryData.adress
             }
         })
 
@@ -81,11 +72,8 @@ const BreweryController = {
             },
             data: {
                 name: newBreweryData.name,
-                abv: newBreweryData.abv,
-                ibu: newBreweryData.ibu,
-                imageUrl: newBreweryData.imageUrl,
-                categorie: newBreweryData.categorie,
-                format: newBreweryData.format
+                city: newBreweryData.city,
+                adress: newBreweryData.adress
             }
         })
 
