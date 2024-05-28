@@ -56,18 +56,18 @@ router.get('/:id', BreweryController.getBreweryById);
  *         description: Beer object to create
  *         in: body
  *         required: true
- *           schema:
- *             type: object
- *             properties:
- *               name:
- *                 type: string
- *                 description: Nom de la brasserie
- *               city:
- *                 type: string
- *                 description: Ville de la brasserie
- *               address:
- *                 type: string
- *                 description: Adresse de la brasserie
+ *         schema:
+ *           type: object
+ *           properties:
+ *             name:
+ *             type: string
+ *             required: true
+ *           city:
+ *             type: string
+ *             required: true
+ *           address:
+ *             type: string
+ *             required: true
  *     responses:
  *       201:
  *         description: Brewery successfully created
