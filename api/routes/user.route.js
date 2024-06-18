@@ -1,59 +1,59 @@
 const express = require('express');
 const router = express.Router();
-const BeerController = require('../controllers/beer.controller');
+const UserController = require('../controllers/user.controller');
 
 /**
  * @swagger
  * tags:
- *   name: Beer
- *   description: Endpoints pour les bières
+ *   name: User
+ *   description: Endpoints pour les users
  */
 
 /**
  * @swagger
- * /beer:
+ * /user:
  *   get:
- *     summary: Returns the list of all beers
- *     description: Returns the list of all beers
+ *     summary: Returns the list of all users
+ *     description: Returns the list of all users
  *     responses:
  *       200:
- *         description: All beers successfully recovered
+ *         description: All users successfully recovered
  *     tags:
- *       - Beer
+ *       - User
  */
-router.get('/', BeerController.getAllBeers);
+router.get('/', UserController.getAllUsers);
 
 /**
  * @swagger
- * /beer/{id}:
+ * /user/{id}:
  *   get:
- *     summary: Retrieve a beer by its ID
- *     description: Retrieve a beer by its ID
+ *     summary: Retrieve a user by its ID
+ *     description: Retrieve a user by its ID
  *     parameters:
  *       - name: id
- *         description: Beer ID to retrieve
+ *         description: User ID to retrieve
  *         in: path
  *         required: true
  *         type: integer
  *     responses:
  *       200:
- *         description: Beer successfully recovered
+ *         description: User successfully recovered
  *       404:
- *         description: Beer not found
+ *         description: User not found
  *     tags:
- *       - Beer
+ *       - User
  */
-router.get('/:id', BeerController.getBeerById);
+router.get('/:id', UserController.getUserById);
 
 /**
  * @swagger
- * /beer:
+ * /user:
  *   post:
- *     summary: Create a new beer
- *     description: Create a new beer
+ *     summary: Create a new user
+ *     description: Create a new user
  *     parameters:
- *       - name: beer
- *         description: Beer object to create
+ *       - name: user
+ *         description: User object to create
  *         in: body
  *         required: true
  *         schema:
@@ -79,32 +79,32 @@ router.get('/:id', BeerController.getBeerById);
  *               required: true
  *     responses:
  *       201:
- *         description: Beer successfully created
+ *         description: User successfully created
  *       400:
- *         description: Invalid beer object
+ *         description: Invalid user object
  *       404:
- *         description: Beer not found
+ *         description: User not found
  *       500:
  *         description: Internal server error
  *     tags:
- *       - Beer
+ *       - User
  */
-router.post('/', BeerController.createBeer);
+router.post('/signup', UserController.createUser);
 
 /**
  * @swagger
- * /beer/{id}:
+ * /user/{id}:
  *   put:
- *     summary: Update a beer by its ID
- *     description: Update a beer by its ID
+ *     summary: Update a user by its ID
+ *     description: Update a user by its ID
  *     parameters:
  *       - name: id
- *         description: Beer ID to update
+ *         description: User ID to update
  *         in: path
  *         required: true
  *         type: integer
- *       - name: beer
- *         description: Beer objet to update
+ *       - name: user
+ *         description: User objet to update
  *         in: body
  *         required: true
  *         schema:
@@ -124,28 +124,28 @@ router.post('/', BeerController.createBeer);
  *               type: string
  *     responses:
  *       200:
- *         description: Beer successfully updated
+ *         description: User successfully updated
  *       404:
- *         description: Beer to update not found
+ *         description: User to update not found
  *     tags:
- *       - Beer
+ *       - User
  */
-router.put('/:id', BeerController.updateBeer);
+router.put('/:id', UserController.updateUser);
 
 /**
  * @swagger
- * /beer/{id}:
+ * /user/{id}:
  *   patch:
- *     summary:  Partially update a beer by its ID
- *     description: Partially update a beer by its ID
+ *     summary:  Partially update a user by its ID
+ *     description: Partially update a user by its ID
  *     parameters:
  *       - name: id
- *         description: Beer ID to partially update
+ *         description: User ID to partially update
  *         in: path
  *         required: true
  *         type: integer
- *       - name: beer
- *         description: Beer object to be partially updated
+ *       - name: user
+ *         description: User object to be partially updated
  *         in: body
  *         required: true
  *         schema:
@@ -165,34 +165,34 @@ router.put('/:id', BeerController.updateBeer);
  *               type: string
  *     responses:
  *       200:
- *         description: Beer partially successfully updated
+ *         description: User partially successfully updated
  *       404:
- *         description: Beer to partially update not found
+ *         description: User to partially update not found
  *     tags:
- *       - Beer
+ *       - User
  */
-router.patch('/:id', BeerController.updatePartialBeer);
+router.patch('/:id', UserController.updatePartialUser);
 
 /**
  * @swagger
- * /beer/{id}:
+ * /user/{id}:
  *   delete:
- *     summary: Delete a beer by its ID
- *     description: Delete a beer by its ID
+ *     summary: Delete a user by its ID
+ *     description: Delete a user by its ID
  *     parameters:
  *       - name: id
- *         description: Beer ID to delete
+ *         description: User ID to delete
  *         in: path
  *         required: true
  *         type: integer
  *     responses:
  *       200:
- *         description: Beer successfully deleted
+ *         description: User successfully deleted
  *       404:
- *         description: Beer to delete not found
+ *         description: User to delete not found
  *     tags:
- *       - Beer
+ *       - User
  */
-router.delete('/:id', BeerController.deleteBeer);
+router.delete('/:id', UserController.deleteUser);
 
 module.exports = router;

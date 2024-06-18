@@ -6,7 +6,7 @@ const BreweryController = require('../controllers/brewery.controller');
  * @swagger
  * tags:
  *   name: Brewery
- *   description: API pour les brasserie
+ *   description: Endpoints les brasserie
  */
 
 /**

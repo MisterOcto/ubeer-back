@@ -8,12 +8,14 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 const beerRoutes = require('./api/routes/beer.route');
 const breweryRoutes = require('./api/routes/brewery.route');
+const usersRoutes = require('./api/routes/user.route');
 
 app.use(express.json());
 
 
 app.use('/beer', beerRoutes);
 app.use('/brewery', breweryRoutes);
+app.use('/user', usersRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

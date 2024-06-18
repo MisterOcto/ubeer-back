@@ -18,9 +18,14 @@ model Beer {
   name String  @unique
   imageUrl String
   categorie String
-  format String
+  formatId Int
+  format Format @relation(fields: [formatId], references: [id])
+  breweryId Int
+  brewery Brewery @relation(fields: [breweryId], references: [id])
   abv Float
   ibu Int
+  price Decimal
+  likedBy User[] @relation("UserLikes")
 }
 
 model Brewery {
@@ -28,6 +33,7 @@ model Brewery {
   name String  @unique
   city String
   adress String
+  beers Beer[]
 }
 
 model Format {
@@ -35,4 +41,13 @@ model Format {
   name String  @unique
   volume String
   unite String @db.Char(2)
+  beers Beer[]
+}
+
+model User {
+  id   Int     @id @default(autoincrement())
+  email String  @unique
+  password String
+  name String
+  likes Beer[] @relation("UserLikes")
 }
