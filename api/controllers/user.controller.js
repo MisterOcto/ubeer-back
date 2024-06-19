@@ -1,5 +1,7 @@
-const prisma = require("../db");
+const prisma = require("../config/prismaClient");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
 
 const UserController = {
 
@@ -25,7 +27,7 @@ const UserController = {
         }
     },
 
-    createUser: async (req, res) => {
+    signUp: async (req, res) => {
         const newUserData = req.body;
         const user = await prisma.user.findUnique({
             where: {
@@ -37,14 +39,51 @@ const UserController = {
             res.send("Account already exists !");
         } else {
             //const saltRounds = await bcrypt.genSalt(10);
-            await prisma.user.create({
+            const user = await prisma.user.create({
                 data: {
                     name: newUserData.name,
                     email: newUserData.email,
                     password: await bcrypt.hash(newUserData.password, 10)
                 }
             });
-            res.send("Account successfully created !");
+            console.log(user);
+            const token = jwt.sign({ email: user.email, userId: user._id }, process.env.JWT_KEY, {
+                expiresIn: '1h',
+            });
+            res.send({
+                message: "Account successfully created !",
+                token
+            });
+        }
+    },
+
+    signIn: async (req, res) => {
+        const newUserData = req.body;
+        const user = await prisma.user.findUnique({
+            where: {
+                email: newUserData.email,
+            },
+        });
+
+        if (user) {
+            const comparePassword = bcrypt.compareSync(newUserData.password, user.password);
+            if (comparePassword) {
+                const token = jwt.sign(
+                    {
+                        email: user.email,
+                        userId: user._id
+                    },
+                    process.env.JWT_KEY,
+                    {
+                        expiresIn: "1h"
+                    }
+                );
+                res.send(token);
+            } else {
+                res.send("Connection failed ! Password incorrect");
+            }
+        } else {
+            res.send("Connection failed ! User not exist");
         }
     },
 

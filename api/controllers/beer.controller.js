@@ -1,4 +1,4 @@
-const prisma = require("../db");
+const prisma = require("../config/prismaClient");
 
 const BeerController = {
 
@@ -26,6 +26,7 @@ const BeerController = {
 
     createBeer: async (req, res) => {
         const newBeerData = req.body;
+        console.log('New beer data:', newBeerData);
         const beer = await prisma.beer.create({
             data: {
                 name: newBeerData.name,

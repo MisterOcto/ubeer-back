@@ -49,11 +49,11 @@ router.get('/:id', UserController.getUserById);
  * @swagger
  * /user:
  *   post:
- *     summary: Create a new user
- *     description: Create a new user
+ *     summary: Signup
+ *     description: Signup
  *     parameters:
  *       - name: user
- *         description: User object to create
+ *         description: Signup
  *         in: body
  *         required: true
  *         schema:
@@ -83,13 +83,59 @@ router.get('/:id', UserController.getUserById);
  *       400:
  *         description: Invalid user object
  *       404:
- *         description: User not found
+ *         description: User already exist
  *       500:
  *         description: Internal server error
  *     tags:
  *       - User
  */
-router.post('/signup', UserController.createUser);
+router.post('/signup', UserController.signUp);
+
+/**
+ * @swagger
+ * /user:
+ *   post:
+ *     summary: Signin
+ *     description: Signin
+ *     parameters:
+ *       - name: user
+ *         description: Signin
+ *         in: body
+ *         required: true
+ *         schema:
+ *           type: object
+ *           properties:
+ *             name:
+ *               type: string
+ *               required: true
+ *             abv:
+ *               type: number
+ *               required: true
+ *             ibu:
+ *               type: number
+ *               required: true
+ *             imageUrl:
+ *               type: string
+ *               required: true
+ *             categorie:
+ *               type: string
+ *               required: true
+ *             format:
+ *               type: string
+ *               required: true
+ *     responses:
+ *       201:
+ *         description: Connection successful
+ *       400:
+ *         description: Invalid user object
+ *       404:
+ *         description: Connection failed
+ *       500:
+ *         description: Internal server error
+ *     tags:
+ *       - User
+ */
+router.post('/signin', UserController.signIn);
 
 /**
  * @swagger
