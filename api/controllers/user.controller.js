@@ -52,6 +52,7 @@ const UserController = {
             });
             res.send({
                 message: "Account successfully created !",
+                user: user,
                 token
             });
         }
@@ -78,7 +79,11 @@ const UserController = {
                         expiresIn: "1h"
                     }
                 );
-                res.send(token);
+                res.send({
+                    message: "Connection successfully !",
+                    user: user,
+                    token
+                });
             } else {
                 res.send("Connection failed ! Password incorrect");
             }
