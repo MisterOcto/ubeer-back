@@ -13,6 +13,10 @@ const BeerController = {
         const beer = await prisma.beer.findUnique({
             where: {
                 id: beerId
+            },
+            include: {
+                brewery: true,
+                format: true
             }
         });
 
