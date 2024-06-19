@@ -38,7 +38,6 @@ const BeerController = {
                 ibu: newBeerData.ibu,
                 imageUrl: newBeerData.imageUrl,
                 categorie: newBeerData.categorie,
-                format: newBeerData.format,
                 price: newBeerData.price,
                 breweryId: newBeerData.breweryId,
                 formatId: newBeerData.formatId
@@ -70,7 +69,9 @@ const BeerController = {
                 ibu: newBeerData.ibu,
                 imageUrl: newBeerData.imageUrl,
                 categorie: newBeerData.categorie,
-                format: newBeerData.format
+                price: newBeerData.price,
+                breweryId: newBeerData.breweryId,
+                formatId: newBeerData.formatId
             }
         })
 
@@ -90,7 +91,9 @@ const BeerController = {
                 ibu: newBeerData.ibu,
                 imageUrl: newBeerData.imageUrl,
                 categorie: newBeerData.categorie,
-                format: newBeerData.format
+                price: newBeerData.price,
+                breweryId: newBeerData.breweryId,
+                formatId: newBeerData.formatId
             }
         })
 
