@@ -23,14 +23,3 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-
-      - name: Deploy to Render
-        env:
-          RENDER_API_KEY: ${{ secrets.render_api_key }}  # Définir cette variable secrète dans les secrets de GitHub
-        run: |
-          npm run build  # Exécuter une commande de build si nécessaire
-          curl -X POST \
-            -H "Authorization: Bearer $" \
-            -H "Content-Type: application/json" \
-            -d '{ "branch": "main", "env": { "NODE_ENV": "production" } }' \
-            https://api.render.com/v1/publish/github/YOUR_RENDER_GITHUB_INTEGRATION_ID
