@@ -3,7 +3,12 @@ const prisma = require("../config/prismaClient");
 const BeerController = {
 
     getAllBeers: async (req, res) => {
-        const beer = await prisma.beer.findMany();
+        const filter = req.query;
+        console.log(filter);
+        const beer = await prisma.beer.findMany({
+            skip: parseInt(filter.skip),
+            take: parseInt(filter.take)
+        });
 
         res.send(beer);
     },
