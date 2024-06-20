@@ -66,7 +66,7 @@ const UserController = {
             },
         });
 
-        if (user) {
+        if (user !== null) {
             const comparePassword = bcrypt.compareSync(newUserData.password, user.password);
             if (comparePassword) {
                 const token = jwt.sign(
@@ -85,10 +85,10 @@ const UserController = {
                     token
                 });
             } else {
-                res.send("Connection failed ! Password incorrect");
+                res.status(401).send("Connection failed ! Password incorrect");
             }
         } else {
-            res.send("Connection failed ! User not exist");
+            res.status(401).send("Connection failed ! User not exist");
         }
     },
 
